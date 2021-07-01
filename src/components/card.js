@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default (props) => (
+ const Card = (props) => (
     <div className="card">
         <div className="card-header">
             {props.header}
@@ -10,3 +10,5 @@ export default (props) => (
         </div>
     </div>
 )
+
+export default Card
