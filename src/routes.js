@@ -6,7 +6,7 @@ import Home from './views/home'
 import ConsultaApostas from './views/admin/apostas'
 import Login from './views/login'
 
-export default () => {
+const Routes = () => {
     return (
         <Switch>
             <Route exact path="/" component={Home} />
@@ -15,3 +15,5 @@ export default () => {
         </Switch>
     )
 }
+
+export default Routes;
