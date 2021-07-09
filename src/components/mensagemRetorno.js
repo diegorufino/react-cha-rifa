@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
-const MensagemRetorno = (result) => {
-    const [msgErro, setMsgErro] = useState(result)
+const MensagemRetorno = (props) => {
+    const [msgErro, setMsgErro] = useState(props.result)
 
     const fecharMsgErro = () => {        
         setMsgErro(false)
@@ -15,8 +15,8 @@ const MensagemRetorno = (result) => {
             onSubmit={fecharMsgErro}
             data-dismiss="alert">&times;
         </button>
-        <h4 className="alert-heading">Erro!</h4>
-        <p className="mb-0">E-mail ou senha não incorreto(s), tente mais tarde.</p>
+        <h4 className="alert-heading">{props.title}</h4>
+        <p className="mb-0">{props.description}</p>
     </div>)
 }
 

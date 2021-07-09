@@ -7,26 +7,27 @@ const Login = props => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    
-    let msgErro = false
+    const [msgErro, setMsgErro] = useState(false)
 
     const passwordHash = require('password-hash');
     const hashedEmail = 'sha1$4e5cb2e6$1$3159858042a77f6410a5ee48baabff7f6fe89281'
     const hashedPassword = 'sha1$1a968806$1$f9921c926a2dafc13f849bf9fbf5c4042e362103'
         
     const handleSignIn = event => {
+        
         event.preventDefault();
         
         passwordHash.verify(email, hashedEmail) && passwordHash.verify(senha, hashedPassword) ?
             localStorage.setItem('login', true) &&
             localStorage.setItem('email_usuario_logado', email) &&
             memoizedCallback()
-        :
-            msgErro = true
+            :
+            setMsgErro(true)
     }
 
     const memoizedCallback = useCallback(
         () => {
+            alert('sadasd')
             localStorage.getItem('login') &&
             history.push('/consulta-apostas')
         },
@@ -36,7 +37,13 @@ const Login = props => {
     return ( 
         <>
             <Card header='Aposta'>
-                <MensagemRetorno result={msgErro} />
+                {msgErro &&
+                    <MensagemRetorno
+                        result={msgErro}
+                        title='Erro!'
+                        description='E-mail ou senha não incorreto(s), tente mais tarde.'
+                    />}
+                
                 <div className="form-group">
                     <label
                         htmlFor="exampleInputEmail1"
